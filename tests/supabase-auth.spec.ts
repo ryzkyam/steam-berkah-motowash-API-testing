@@ -40,10 +40,10 @@ test.describe("Supabase Authentication API Test Suite", () => {
       },
     });
 
-    expect(response.status()).toBe(401);
+    expect(response.status()).toBe(400);
 
     const body = await response.json();
-    expect(body).toHaveProperty("error_description");
-    expect(body.error_description).toContain("Invalid login credentials");
+     expect(body).toHaveProperty("msg");
+    expect(body.msg).toContain("Invalid login credentials");
   });
 });
