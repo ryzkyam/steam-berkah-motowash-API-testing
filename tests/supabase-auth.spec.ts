@@ -40,7 +40,7 @@ test.describe("Supabase Authentication API Test Suite", () => {
       },
     });
 
-    expect(response.status()).toBe(400);
+    expect(response.status()).toBe(401);
 
     const body = await response.json();
     expect(body).toHaveProperty("error_description");
