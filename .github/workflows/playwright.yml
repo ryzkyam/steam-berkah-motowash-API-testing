@@ -7,10 +7,10 @@ on:
 jobs:
   test:
     timeout-minutes: 60
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # <--- Dikunci ke Ubuntu 24 agar tidak memicu notice migrasi otomatis ke Ubuntu 26
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v4.2.2 # <--- Menggunakan minor version terbaru yang bebas warning Node 20
+      - uses: actions/setup-node@v4.2.0 # <--- Menggunakan minor version terbaru
         with:
           node-version: "22"
       - name: Install dependencies
@@ -25,7 +25,7 @@ jobs:
           TEST_USER_ID: ${{ secrets.TEST_USER_ID }}
           TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
         run: npx playwright test
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4.6.1 # <--- Menggunakan rilis terbaru yang sudah support Node modern
         if: ${{ !cancelled() }}
         with:
           name: playwright-report
